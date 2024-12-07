@@ -1,3 +1,4 @@
+#Definir las funciones
 #Suma
 def suma(a,b):
     return a+b
@@ -9,11 +10,17 @@ def mult(a,b,pa=1,pb=1):
     return a*b
 #Division
 def division(a,b):
+    #return a/b
     try:
         result = a / b
     except ZeroDivisionError:
         result = None
     return result
+
+    '''
+    finally:
+        return result
+    '''
 
 #Interfaz de usuario
 print("Seleccionar la operacion")

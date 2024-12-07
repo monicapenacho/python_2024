@@ -7,7 +7,7 @@ import random
 def gen_pawd(length,listaCaracteres,pwd):
     #Recorrer el listado de caracteres
     for i in range(length):
-        #Elijo un elemento de forma aleatoria
+        #Elijo un elemento (dentro de una secuencia que le pase) de forma aleatoria
         carac=random.choice(listaCaracteres)
         #Anyado el elemento
         #pwd=""
