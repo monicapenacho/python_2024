@@ -23,39 +23,6 @@ class Clinica:
         '''
         pass
 
-    def print_menu(self):
-        '''
-        print_menu. Función que imprime un menú por pantalla
-
-        RETURN
-        ------
-        opcion : int
-            Entero 1|2|3|4|5|6|7|8
-        '''
-        os.system("cls")  # Limpiamos la pantalla en sistemas Windows
-        print(f"-------- GESTOR {self.nombre} --------")
-        print("[1] REGISTRAR PACIENTE")
-        print("[2] REGISTRAR DOCTOR")
-        print("[3] REGISTRAR ENFERMERO")
-        print("[4] REGISTRAR ADMINISTRADOR")
-        print("[5] AGENDAR CITA")
-        print("[6] VER HISTORIAL MEDICO")
-        print("[7] GENERAR INFORMES")
-        print("[8] SALIR")
-
-        opcion = input("Introduce opción [1|2|3|4|5|6|7|8]: ")  # Solicitar opción y verificar que sea válida
-        opcion_incorrecta = True
-        while(opcion_incorrecta):
-            if not opcion.isdigit():  # Verificar si es un número
-                opcion = input("Introduce opción [1|2|3|4|5|6|7|8]: ")
-                continue
-            if int(opcion) not in [1, 2, 3, 4, 5, 6, 7, 8]:  # Verificar que la opción esté dentro del rango
-                opcion = input("Introduce opción [1|2|3|4|5|6|7|8]: ")
-                continue
-            opcion_incorrecta = False
-
-        return int(opcion)  # Retornar la opción como número entero
-
 class Persona:
     '''
     Clase Persona. Define un elemento de tipo Persona. Representa a una persona en la clínica
@@ -189,9 +156,9 @@ class Administrador(Persona):
         return super().informacion_general() + f", Nivel de Acceso: {self.rol_sistema}"
 
 class Cita:
-    """
+    '''
     Representa una cita médica
-    """
+    '''
     def __init__(self, paciente, doctor, fecha, hora):
         self.paciente = paciente
         self.doctor = doctor
@@ -202,9 +169,9 @@ class Cita:
         return f"Cita - Paciente: {self.paciente.nombre}, Doctor: {self.doctor.nombre}, Fecha: {self.fecha}, Hora: {self.hora}"
 
 class HistorialMedico:
-    """
+    '''
     Clase independiente que maneja el historial médico de los pacientes
-    """
+    '''
 
     def __init__(self):
         self.historial = {}
@@ -219,16 +186,24 @@ class HistorialMedico:
 
 
 class Menu:
-    """
+    '''
     Clase que representa el menú de la aplicación
-    """
+    '''
 
     def __init__(self, nombre, gestor):
         self.nombre = nombre
         self.gestor = gestor
 
     def mostrar_menu(self):
-        """Muestra el menú principal de la aplicación"""
+        '''
+        Muestra el menú principal de la aplicación
+
+        RETURN
+        ------
+        opcion: int
+            Entero  1 | 2 | 3 | 4 | 5 | 6 | 7 | 8
+        '''
+        os.system("cls")  # Limpiamos la pantalla en sistemas Windows
         print(f"-------- GESTOR {self.nombre} --------")
         print("[1] REGISTRAR PACIENTE")
         print("[2] REGISTRAR DOCTOR")
@@ -238,3 +213,19 @@ class Menu:
         print("[6] VER HISTORIAL MÉDICO")
         print("[7] GENERAR INFORMES")
         print("[8] SALIR")
+
+        opcion = input("Introduce opción [1|2|3|4|5|6|7|8]: ")
+        opcion_incorrecta=True
+        while(opcion_incorrecta):
+            if not opcion.isdigit():
+                opcion = input("Introduce opción [1|2|3|4|5|6|7|8]: ")
+                continue
+            if not int(opcion) in [1,2,3,4,5,6,7,8]:
+                opcion = input("Introduce opción [1|2|3|4|5|6|7|8]: ")
+                continue
+            opcion_incorrecta = False
+
+        return opcion
+
+
+
