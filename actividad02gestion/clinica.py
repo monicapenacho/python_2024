@@ -1,5 +1,8 @@
 
 import os
+import json
+import re
+
 class Clinica:
     '''
     Clase Clinica. Permite gestionar una clínica médica
@@ -28,7 +31,7 @@ class Clinica:
         RETURN
         ------
         opcion : int
-            Entero 1|2|3|4|5
+            Entero 1|2|3|4|5|6|7|8
         '''
         os.system("cls")  # Limpiamos la pantalla en sistemas Windows
         print(f"-------- GESTOR {self.nombre} --------")
@@ -38,16 +41,17 @@ class Clinica:
         print("[4] REGISTRAR ADMINISTRADOR")
         print("[5] AGENDAR CITA")
         print("[6] VER HISTORIAL MEDICO")
-        print("[7] SALIR")
+        print("[7] INFORMES")
+        print("[8] SALIR")
 
-        opcion = input("Introduce opción [1|2|3|4|5]: ")  # Solicitar opción y verificar que sea válida
+        opcion = input("Introduce opción [1|2|3|4|5|6|7|8]: ")  # Solicitar opción y verificar que sea válida
         opcion_incorrecta = True
         while(opcion_incorrecta):
             if not opcion.isdigit():  # Verificar si es un número
-                opcion = input("Introduce opción [1|2|3|4|5]: ")
+                opcion = input("Introduce opción [1|2|3|4|5|6|7|8]: ")
                 continue
-            if int(opcion) not in [1, 2, 3, 4, 5]:  # Verificar que la opción esté dentro del rango
-                opcion = input("Introduce opción [1|2|3|4|5]: ")
+            if int(opcion) not in [1, 2, 3, 4, 5, 6, 7, 8]:  # Verificar que la opción esté dentro del rango
+                opcion = input("Introduce opción [1|2|3|4|5|6|7|8]: ")
                 continue
             opcion_incorrecta = False
 
@@ -70,8 +74,23 @@ class Persona:
 
     def __init__(self,nombre,edad,dni):
         self.nombre = nombre
-        self.edad = edad
-        self.dni = dni
+        self.edad = self.validar_numero(edad, "Edad")
+        self.dni = self.validar_dni(dni)
+
+    @staticmethod
+    def validar_numero(valor, mensaje):
+        while True:
+            try:
+                return int(valor)
+            except ValueError:
+                valor = input(f"{mensaje} inválido. Ingrese un número: ")
+
+    @staticmethod
+    def validar_dni(dni):
+        patron_dni = r"^\d{8}[A-Za-z]$"
+        while not re.match(patron_dni, dni):
+            dni = input("DNI inválido. Ingrese un DNI válido (8 números seguidos de una letra): ")
+        return dni.upper()
 
     def informacion_general(self):
         return f"Nombre: {self.nombre}, edad: {self.edad}, dni: {self.dni}"
@@ -96,12 +115,12 @@ class Paciente(Persona):
         Número del seguro médico del paciente. Este atributo también es específico de la clase Paciente.
     '''
 
-    def __init__(self, nombre, edad, dni, historial_medico, numero_seguro):
+    def __init__(self, nombre, edad, dni, historial_medico="", numero_seguro=""):
         '''
         Método constructor de la clase Paciente. Inicializa los atributos heredados de la clase Persona
         y los atributos específicos de la clase Paciente (historial_medico y numero_seguro).
         '''
-        # Llamamos al constructor de la clase base (Persona) para inicializar los atributos comunes (nombre, edad, dni).
+        # Llamamos al constructor de la clase padre (Persona) para inicializar los atributos comunes (nombre, edad, dni).
         super().__init__(nombre, edad, dni)
 
         # Inicializamos los atributos específicos de la clase Paciente.
@@ -174,7 +193,6 @@ class Cita:
     """
     Representa una cita médica
     """
-
     def __init__(self, paciente, doctor, fecha, hora):
         self.paciente = paciente
         self.doctor = doctor
@@ -218,4 +236,5 @@ class Menu:
         print("[4] REGISTRAR ADMINISTRADOR")
         print("[5] AGENDAR CITA")
         print("[6] VER HISTORIAL MÉDICO")
-        print("[7] SALIR")
+        print("[7] INFORMES")
+        print("[8] SALIR")
