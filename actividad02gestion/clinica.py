@@ -16,9 +16,9 @@ class Clinica:
         Constructor: El método init es el llamado a crear el objeto
         '''
         self.nombre = nombre
-            '''
-            Atributo de instancia
-            '''
+        '''
+        Atributo de instancia
+        '''
         pass
 
     def print_menu(self):
@@ -78,7 +78,7 @@ class Persona:
         '''
         Función que imprime por pantalla una persona
         '''
-        print(f"Nombre: {self.nombre}, edad: {self.edad}, dni: {self.dni}")class Paciente(Persona):
+        print(f"Nombre: {self.nombre}, edad: {self.edad}, dni: {self.dni}")
 
 class Paciente(Persona):
     '''

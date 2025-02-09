@@ -2,9 +2,6 @@ import os
 from clinica import Clinica, Paciente, Doctor, Enfermero, Administrador, Cita, HistorialMedico
 
 os.system('cls')
-    '''
-    Limpia la consola en sistema operativo Windows. Si estás usando Linux o Mac, tendrás que usar 'clear' en lugar de 'cls':
-    '''
 
 clinica = Clinica()
 historial_medico = HistorialMedico()
@@ -13,7 +10,7 @@ doctores = []
 citas = []
 
 def mostrar_menu():
-    """Muestra el menú principal de la aplicación."""
+    """Muestra el menú principal de la aplicación"""
     print(f"-------- GESTOR {self.nombre} --------")
     print("1. Registrar Paciente")
     print("2. Registrar Doctor")
