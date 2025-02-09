@@ -1,5 +1,5 @@
 import os
-from clinica import Clinica, Paciente, Doctor, Enfermero, Administrador, Cita, HistorialMedico
+from clinica import Clinica, Paciente, Doctor, Enfermero, Administrador, Cita, HistorialMedico, Menu
 
 os.system('cls')
 
@@ -7,16 +7,12 @@ clinica = Clinica()
 historial_medico = HistorialMedico()
 pacientes = []
 doctores = []
+enfermeros = []
+administradores = []
 citas = []
+menu = Menu(clinica.nombre)
 
-def mostrar_menu():
-    """Muestra el menú principal de la aplicación"""
-    print(f"-------- GESTOR {clinica.nombre} --------")
-    print("1. Registrar Paciente")
-    print("2. Registrar Doctor")
-    print("3. Agendar Cita")
-    print("4. Ver Historial Médico")
-    print("5. Salir")
+opcion=clinica.print_menu()
 
 def registrar_paciente():
     """Registra un nuevo paciente."""
@@ -42,6 +38,29 @@ def registrar_doctor():
     doctor = Doctor(nombre, edad, dni, especialidad, numero_colegiatura)
     doctores.append(doctor)
     print("Doctor registrado con éxito.")
+
+def registrar_enfermero():
+    """Registra un nuevo enfermero."""
+    nombre = input("Nombre del enfermero: ")
+    edad = input("Edad: ")
+    while not edad.isdigit():
+        edad = input("Edad inválida. Ingrese una edad numérica: ")
+    dni = input("DNI: ")
+    turno = input("Turno del enfermero: ")
+    hospital_asignado = input("Hospital asignado: ")
+    enfermero = Enfermero(nombre, edad, dni, turno, hospital_asignado)
+    print("Enfermero registrado con éxito.")
+
+def registrar_administrador():
+    """Registra un nuevo administrador."""
+    nombre = input("Nombre del administrador: ")
+    edad = input("Edad: ")
+    while not edad.isdigit():
+        edad = input("Edad inválida. Ingrese una edad numérica: ")
+    dni = input("DNI: ")
+    rol_sistema = input("Rol del administrador: ")
+    administrador = Administrador(nombre, edad, dni, rol_sistema)
+    print("Administrador registrado con éxito.")
 
 def agendar_cita():
     """Agenda una cita entre paciente y doctor."""
@@ -71,7 +90,7 @@ def ver_historial():
 
 # Menú principal
 while True:
-    mostrar_menu()
+    menu.mostrar_menu()
     opcion = input("Seleccione una opción: ")
 
     if opcion == "1":
@@ -79,10 +98,14 @@ while True:
     elif opcion == "2":
         registrar_doctor()
     elif opcion == "3":
-        agendar_cita()
+        registrar_enfermero()
     elif opcion == "4":
-        ver_historial()
+        registrar_administrador()
     elif opcion == "5":
+        agendar_cita()
+    elif opcion == "6":
+        ver_historial()
+    elif opcion == "7":
         print("Saliendo...")
         break
     else:

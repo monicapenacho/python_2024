@@ -34,9 +34,11 @@ class Clinica:
         print(f"-------- GESTOR {self.nombre} --------")
         print("[1] REGISTRAR PACIENTE")
         print("[2] REGISTRAR DOCTOR")
-        print("[3] AGENDAR CITA")
-        print("[4] VER HISTORIAL MÉDICO")
-        print("[5] SALIR")
+        print("[3] REGISTRAR ENFERMERO")
+        print("[4] REGISTRAR ADMINISTRADOR")
+        print("[5] AGENDAR CITA")
+        print("[6] VER HISTORIAL MEDICO")
+        print("[7] SALIR")
 
         opcion = input("Introduce opción [1|2|3|4|5]: ")  # Solicitar opción y verificar que sea válida
         opcion_incorrecta = True
@@ -204,13 +206,16 @@ class Menu:
     Clase que representa el menú de la aplicación
     """
 
-    def __init__(self):
-        pass
+    def __init__(self, nombre):
+        self.nombre = nombre
 
     def mostrar_menu(self):
-        print("--- GESTIÓN DE CLÍNICA MÉDICA ---")
-        print("1. Registrar Paciente")
-        print("2. Registrar Doctor")
-        print("3. Agendar Cita")
-        print("4. Ver Historial Médico")
-        print("5. Salir")
+        """Muestra el menú principal de la aplicación"""
+        print(f"-------- GESTOR {self.nombre} --------")
+        print("[1] REGISTRAR PACIENTE")
+        print("[2] REGISTRAR DOCTOR")
+        print("[3] REGISTRAR ENFERMERO")
+        print("[4] REGISTRAR ADMINISTRADOR")
+        print("[5] AGENDAR CITA")
+        print("[6] VER HISTORIAL MÉDICO")
+        print("[7] SALIR")
