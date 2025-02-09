@@ -122,8 +122,9 @@ class Paciente(Persona):
         #Guardamos datos
         self.nombre = nombre
         self.edad = edad
-        self.altura = altura
-        self.peso = peso
+        self.dni = dni
+        self.historial_medico = historial_medico
+        self.numero_seguro = numero_seguro
 
         #Imprimimos datos recogidos
     def print_persona(self):
@@ -138,12 +139,7 @@ class Doctor(Persona):
         super().__init__(nombre, edad, dni)
         self.especialidad = especialidad
         self.numero_colegiado = numero_colegiado
-
-    def informacion_doctor(self):
-        return super().informacion_general() + f", Especialidad: {self.especialidad}, Nº Colegiado: {self.numero_colegiatura}"
-
-#check inicio
-        self.__pacientes=[]
+        self.__pacientes = []  # Lista de pacientes para este doctor
 
     def add_paciente(self,paciente):
         self.__pacientes.append(paciente)
@@ -152,7 +148,8 @@ class Doctor(Persona):
         for i in range(len( self.__pacientes)):
             print(f"Paciente: {self.__pacientes[i].nombre}")
 
-#check fin
+    def informacion_doctor(self):
+        return super().informacion_general() + f", Especialidad: {self.especialidad}, Nº Colegiado: {self.numero_colegiado}"
 
 class Enfermero(Persona):
     def __init__(self, nombre, edad, dni, turno, hospital_asignado):

@@ -11,7 +11,7 @@ citas = []
 
 def mostrar_menu():
     """Muestra el menú principal de la aplicación"""
-    print(f"-------- GESTOR {self.nombre} --------")
+    print(f"-------- GESTOR {clinica.nombre} --------")
     print("1. Registrar Paciente")
     print("2. Registrar Doctor")
     print("3. Agendar Cita")
@@ -50,12 +50,12 @@ def agendar_cita():
     else:
         print("Lista de pacientes:")
         for i, paciente in enumerate(pacientes):
-            print(f"{i+1}. {paciente.mostrar_info()}")
+            print(f"{i+1}. {paciente.detalles_paciente()}")
         paciente_idx = int(input("Seleccione el número del paciente: ")) - 1
 
         print("Lista de doctores:")
         for i, doctor in enumerate(doctores):
-            print(f"{i+1}. {doctor.mostrar_info()}")
+            print(f"{i+1}. {doctor.informacion_doctor()}")
         doctor_idx = int(input("Seleccione el número del doctor: ")) - 1
 
         fecha = input("Fecha de la cita (YYYY-MM-DD): ")
