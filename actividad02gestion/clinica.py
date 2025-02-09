@@ -1,6 +1,5 @@
 
 import os
-import json
 import re
 
 class Clinica:
@@ -41,7 +40,7 @@ class Clinica:
         print("[4] REGISTRAR ADMINISTRADOR")
         print("[5] AGENDAR CITA")
         print("[6] VER HISTORIAL MEDICO")
-        print("[7] INFORMES")
+        print("[7] GENERAR INFORMES")
         print("[8] SALIR")
 
         opcion = input("Introduce opción [1|2|3|4|5|6|7|8]: ")  # Solicitar opción y verificar que sea válida
@@ -224,8 +223,9 @@ class Menu:
     Clase que representa el menú de la aplicación
     """
 
-    def __init__(self, nombre):
+    def __init__(self, nombre, gestor):
         self.nombre = nombre
+        self.gestor = gestor
 
     def mostrar_menu(self):
         """Muestra el menú principal de la aplicación"""
@@ -236,5 +236,5 @@ class Menu:
         print("[4] REGISTRAR ADMINISTRADOR")
         print("[5] AGENDAR CITA")
         print("[6] VER HISTORIAL MÉDICO")
-        print("[7] INFORMES")
+        print("[7] GENERAR INFORMES")
         print("[8] SALIR")

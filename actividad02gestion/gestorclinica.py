@@ -1,5 +1,6 @@
 import os
 from clinica import Clinica, Paciente, Doctor, Enfermero, Administrador, Cita, HistorialMedico, Menu
+import json
 
 os.system('cls')
 
@@ -13,6 +14,35 @@ citas = []
 menu = Menu(clinica.nombre)
 
 opcion=clinica.print_menu()
+
+class GestorDatos:
+    ARCHIVO_DATOS = "datos_clinica.json"
+
+    def __init__(self):
+        self.pacientes = []
+        self.doctores = []
+        self.enfermeros = []
+        self.administradores = []
+        self.citas = []
+        self.cargar_datos()
+
+    def guardar_datos(self):
+        datos = {
+            "pacientes": [p.__dict__ for p in self.pacientes],
+            "doctores": [d.__dict__ for d in self.doctores],
+            "enfermeros": [e.__dict__ for e in self.enfermeros],
+            "administradores": [a.__dict__ for a in self.administradores],
+            "citas": [c.__dict__ for c in self.citas]
+        }
+        with open(self.ARCHIVO_DATOS, "w") as f:
+            json.dump(datos, f, indent=4)
+
+    def generar_informes(self):
+        print("\n--- INFORMES ---")
+        print(f"Total de pacientes: {len(self.pacientes)}")
+        print(f"Total de doctores: {len(self.doctores)}")
+        print(f"Total de enfermeros: {len(self.enfermeros)}")
+        print(f"Total de citas agendadas: {len(self.citas)}")
 
 def registrar_paciente():
     """Registra un nuevo paciente."""
@@ -106,7 +136,17 @@ while True:
     elif opcion == "6":
         ver_historial()
     elif opcion == "7":
+        self.gestor.generar_informes()
+    elif opcion == "8":
+        self.gestor.guardar_datos()
         print("Saliendo...")
         break
     else:
-        print("Opción no válida.")
+        print("Opción no válida. Inténtelo de nuevo.")
+
+
+if __name__ == "__main__":
+    gestor = GestorDatos()
+    menu = Menu(gestor)
+    menu.mostrar_menu()
+
